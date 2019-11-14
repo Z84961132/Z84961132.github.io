@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Request和Response的区别 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Request 和 Response 对象起到了服务器与客户机之间的信息传递作用。Request 对象用于接收客户端浏览器提交的数据，而 Response 对象的功能则是将服务器端的数据发送到客户端浏览器。 一、Request对象的五个集合： QueryString：用以获取客户端附在url地址后的查询字符串中的信息。 1例如：stra=Request.QueryString [&quot;strUserl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Request和Response的区别">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;10&#x2F;10&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Request 和 Response 对象起到了服务器与客户机之间的信息传递作用。Request 对象用于接收客户端浏览器提交的数据，而 Response 对象的功能则是将服务器端的数据发送到客户端浏览器。 一、Request对象的五个集合： QueryString：用以获取客户端附在url地址后的查询字符串中的信息。 1例如：stra=Request.QueryString [&quot;strUserl">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-10T09:58:05.113Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/10/10/" class="article-date">
+  <time datetime="2019-11-10T09:56:45.000Z" itemprop="datePublished">2019-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Request和Response的区别
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Request 和 Response 对象起到了服务器与客户机之间的信息传递作用。Request 对象用于接收客户端浏览器提交的数据，而 Response 对象的功能则是将服务器端的数据发送到客户端浏览器。</p>
+<p>一、Request对象的五个集合：</p>
+<p>QueryString：用以获取客户端附在url地址后的查询字符串中的信息。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.QueryString [<span class="string">"strUserld"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Form：用以获取客户端在FORM表单中所输入的信息。（表单的method属性值需要为POST）</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.Form[<span class="string">"strUserld"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Cookies：用以获取客户端的Cookie信息。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.Cookies[<span class="string">"strUserld"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>ServerVariables：用以获取客户端发出的HTTP请求信息中的头信息及服务器端环境变量信息。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.ServerVariables[<span class="string">"REMOTE_ADDR"</span>],返回客户端IP地址</span><br></pre></td></tr></table></figure>
+
+<p>ClientCertificate：用以获取客户端的身份验证信息</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.ClientCertificate[<span class="string">"VALIDFORM"</span>],对于要求安全验证的网站，返回有效起始日期。</span><br></pre></td></tr></table></figure>
+
+<p>二、Response对象<br>Response对象用于动态响应客户端请示，控制发送给用户的信息，并将动态生成响应。Response对象提供了一个数据集合cookie，它用于在客户端写入cookie值。若指定的cookie不存在，则创建它。若存在，则将自动进行更新。结果返回给客户端浏览器。<br>语法格式：Response.Cookies(CookieName)[(key)|.attribute]=value。这里的CookiesName是指定的Cookie的名称，如果指定了Key，则该Cookie就是一个字典，Attribute属性包括Domain，Expires，HasKeys，Path，Secure。</p>
+<p>response的方法:</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Write：向客户端发送浏览器能够处理的各种数据,包括:html代码,脚本程序等。</span><br><span class="line"></span><br><span class="line">Redirect：response.redirect(<span class="string">"url"</span>)的作用是在服务器端重定向于另一个网页。</span><br><span class="line"></span><br><span class="line">End：用来终止脚本程序。</span><br><span class="line"></span><br><span class="line">Clear：要说到Clear方法，就必须提到response的Buffer属性，Buffer属性用来设置服务器端是否将页面先输出到缓冲区。语法为：Response.Buffer=True/False</span><br><span class="line"></span><br><span class="line">Flush：当Buffer的值为True时，Flush方法用于将缓冲区中的当前页面内容立刻输出到客户端。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/10/10/" data-id="ck2yfuqpb0000uwnu0dma06zb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/10/9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JSP中使用Cookies实现登陆信息的保存</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/10/10/">Request和Response的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/10/9/">JSP中使用Cookies实现登陆信息的保存</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/8/">初识jsp</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/6/">我的第六篇博客</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/5/">jsp实现分页效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

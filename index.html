@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/11/14/hello-world/" class="article-date">
-  <time datetime="2019-11-14T08:05:00.007Z" itemprop="datePublished">2019-11-14</time>
+    <a href="/2019/11/10/10/" class="article-date">
+  <time datetime="2019-11-10T09:56:45.000Z" itemprop="datePublished">2019-11-10</time>
 </a>
     
   </div>
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/14/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/11/10/10/">Request和Response的区别</a>
     </h1>
   
 
@@ -83,24 +83,579 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <p>Request 和 Response 对象起到了服务器与客户机之间的信息传递作用。Request 对象用于接收客户端浏览器提交的数据，而 Response 对象的功能则是将服务器端的数据发送到客户端浏览器。</p>
+<p>一、Request对象的五个集合：</p>
+<p>QueryString：用以获取客户端附在url地址后的查询字符串中的信息。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.QueryString [<span class="string">"strUserld"</span>]</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>Form：用以获取客户端在FORM表单中所输入的信息。（表单的method属性值需要为POST）</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.Form[<span class="string">"strUserld"</span>]</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>Cookies：用以获取客户端的Cookie信息。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.Cookies[<span class="string">"strUserld"</span>]</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>ServerVariables：用以获取客户端发出的HTTP请求信息中的头信息及服务器端环境变量信息。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.ServerVariables[<span class="string">"REMOTE_ADDR"</span>],返回客户端IP地址</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>ClientCertificate：用以获取客户端的身份验证信息</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：stra=Request.ClientCertificate[<span class="string">"VALIDFORM"</span>],对于要求安全验证的网站，返回有效起始日期。</span><br></pre></td></tr></table></figure>
+
+<p>二、Response对象<br>Response对象用于动态响应客户端请示，控制发送给用户的信息，并将动态生成响应。Response对象提供了一个数据集合cookie，它用于在客户端写入cookie值。若指定的cookie不存在，则创建它。若存在，则将自动进行更新。结果返回给客户端浏览器。<br>语法格式：Response.Cookies(CookieName)[(key)|.attribute]=value。这里的CookiesName是指定的Cookie的名称，如果指定了Key，则该Cookie就是一个字典，Attribute属性包括Domain，Expires，HasKeys，Path，Secure。</p>
+<p>response的方法:</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Write：向客户端发送浏览器能够处理的各种数据,包括:html代码,脚本程序等。</span><br><span class="line"></span><br><span class="line">Redirect：response.redirect(<span class="string">"url"</span>)的作用是在服务器端重定向于另一个网页。</span><br><span class="line"></span><br><span class="line">End：用来终止脚本程序。</span><br><span class="line"></span><br><span class="line">Clear：要说到Clear方法，就必须提到response的Buffer属性，Buffer属性用来设置服务器端是否将页面先输出到缓冲区。语法为：Response.Buffer=True/False</span><br><span class="line"></span><br><span class="line">Flush：当Buffer的值为True时，Flush方法用于将缓冲区中的当前页面内容立刻输出到客户端。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/10/10/" data-id="ck2yfuqpb0000uwnu0dma06zb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/10/9/" class="article-date">
+  <time datetime="2019-11-10T09:44:28.000Z" itemprop="datePublished">2019-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/10/9/">JSP中使用Cookies实现登陆信息的保存</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h4 id="（1）首先我们要知道Cookies是什么："><a href="#（1）首先我们要知道Cookies是什么：" class="headerlink" title="（1）首先我们要知道Cookies是什么："></a>（1）首先我们要知道Cookies是什么：</h4><h5 id="1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）"><a href="#1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）" class="headerlink" title="1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）"></a>1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）</h5><h5 id="2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差"><a href="#2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差" class="headerlink" title="2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差"></a>2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差</h5><h5 id="3、Cookies的产生："><a href="#3、Cookies的产生：" class="headerlink" title="3、Cookies的产生："></a>3、Cookies的产生：</h5><h6 id="a、Cookies中是以（key，value）的形式保存数据的"><a href="#a、Cookies中是以（key，value）的形式保存数据的" class="headerlink" title="a、Cookies中是以（key，value）的形式保存数据的"></a>a、Cookies中是以（key，value）的形式保存数据的</h6><h6 id="b、Cookies是由Java-servlet-http-Cookies类产生的"><a href="#b、Cookies是由Java-servlet-http-Cookies类产生的" class="headerlink" title="b、Cookies是由Java.servlet.http.Cookies类产生的"></a>b、Cookies是由Java.servlet.http.Cookies类产生的</h6><h6 id="c、常见方法："><a href="#c、常见方法：" class="headerlink" title="c、常见方法："></a>c、常见方法：</h6><p>  public Cookie（String name，String value）Cookie构造器</p>
+<p>  String getName（）获得key值</p>
+<p>  String getValue（）获得value值</p>
+<p>  void setMaxAge（int expiry）Cookie最大有效期</p>
+<p>  response.addCookie（Cookie cookie）用于服务端产生Cookie</p>
+<p>  request。getCookie（Cookie cookie）用于客户端获得Cookie</p>
+<h5 id="4、生成Cookie步骤："><a href="#4、生成Cookie步骤：" class="headerlink" title="4、生成Cookie步骤："></a>4、生成Cookie步骤：</h5><h6 id="a、服务端准备Cookie：response-addCookie（Cookie-cookie）"><a href="#a、服务端准备Cookie：response-addCookie（Cookie-cookie）" class="headerlink" title="a、服务端准备Cookie：response.addCookie（Cookie cookie）"></a>a、服务端准备Cookie：response.addCookie（Cookie cookie）</h6><h6 id="b、页面跳转（请求转发，重定向）"><a href="#b、页面跳转（请求转发，重定向）" class="headerlink" title="b、页面跳转（请求转发，重定向）"></a>b、页面跳转（请求转发，重定向）</h6><h6 id="c、客户端获取Cookie：request-getCookie（）；"><a href="#c、客户端获取Cookie：request-getCookie（）；" class="headerlink" title="c、客户端获取Cookie：request.getCookie（）；"></a>c、客户端获取Cookie：request.getCookie（）；</h6><h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><h5 id="a、服务端增加Cookie：request对象，客户端获取对象：response对象"><a href="#a、服务端增加Cookie：request对象，客户端获取对象：response对象" class="headerlink" title="a、服务端增加Cookie：request对象，客户端获取对象：response对象"></a>a、服务端增加Cookie：request对象，客户端获取对象：response对象</h5><h5 id="b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。"><a href="#b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。" class="headerlink" title="b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。"></a>b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。</h5><h4 id="（2）是不是感觉有点迷，让我们看一下代码就了解了："><a href="#（2）是不是感觉有点迷，让我们看一下代码就了解了：" class="headerlink" title="（2）是不是感觉有点迷，让我们看一下代码就了解了："></a>（2）是不是感觉有点迷，让我们看一下代码就了解了：</h4><h5 id="1、先创建一个-login-jsp"><a href="#1、先创建一个-login-jsp" class="headerlink" title="1、先创建一个 login.jsp"></a>1、先创建一个 login.jsp</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;登录&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;%!</span><br><span class="line">      String name;</span><br><span class="line">   %&gt;</span><br><span class="line">   &lt;%</span><br><span class="line">       //获得已存在客户端中cookie</span><br><span class="line">       boolean flag=false;</span><br><span class="line">       Cookie cookies[]=request.getCookies();</span><br><span class="line">       for(Cookie cookie:cookies)&#123;</span><br><span class="line">           if(cookie.getName().equals(&quot;uname&quot;))&#123;</span><br><span class="line">               name=cookie.getValue();</span><br><span class="line">               flag=true;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if(!flag)&#123;</span><br><span class="line">           out.println(&quot;cookie已失效&quot;);</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">           out.println(&quot;cookie+&quot;+name);</span><br><span class="line">       &#125;</span><br><span class="line">   %&gt;</span><br><span class="line">    &lt;form action=&quot;check.jsp&quot; method=&quot;post&quot;&gt;</span><br><span class="line">        用户名: &lt;input type=&quot;text&quot; name=&quot;uname&quot; value=&quot;&lt;%=(name==null?&quot;&quot;:name)%&gt;&quot; &gt;&lt;br/&gt;</span><br><span class="line">        密码: &lt;input type=&quot;password&quot; name=&quot;upwd&quot; &gt;&lt;br/&gt;</span><br><span class="line">              &lt;input type=&quot;submit&quot; value=&quot;登录&quot;&gt;&lt;br/&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、-check-jsp"><a href="#2、-check-jsp" class="headerlink" title="2、 check.jsp"></a>2、 check.jsp</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">      &lt;%</span><br><span class="line">          request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">          String name=request.getParameter(&quot;uname&quot;);</span><br><span class="line">          Cookie cookie=new Cookie(&quot;uname&quot;,name);//没有无参构造器</span><br><span class="line">          //增加cookie</span><br><span class="line">          cookie.setMaxAge(10);</span><br><span class="line">          response.addCookie(cookie);</span><br><span class="line">          //转发cookie</span><br><span class="line">          response.sendRedirect(&quot;A.jsp&quot;);//这里我感觉是往客户端发，由于我们是在电脑上操作的，客户端和服务端其实是在一个机子上的</span><br><span class="line">      %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、A-jsp"><a href="#3、A-jsp" class="headerlink" title="3、A.jsp"></a>3、A.jsp</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h4><p><img src="https://i.loli.net/2019/11/10/CmjxUcYZ8NPXSz3.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2019/11/10/yLk8ghOAu36YPRl.png" alt="image.png"></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>  <img src="https://i.loli.net/2019/11/10/nf9hKvbX4gkiWVF.png" alt="image.png"></p>
+<h4 id="从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。"><a href="#从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。" class="headerlink" title="从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。"></a>从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/10/9/" data-id="ck2yfuqpr0007uwnu4aoi8egn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/05/8/" class="article-date">
+  <time datetime="2019-11-05T03:33:47.000Z" itemprop="datePublished">2019-11-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/05/8/">初识jsp</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="初识JSP"><a href="#初识JSP" class="headerlink" title="初识JSP"></a>初识JSP</h1><p>创建时间:2019-10-30 18:52</p>
+<p>阅读:22</p>
+<h4 id="Jsp-本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码"><a href="#Jsp-本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码" class="headerlink" title="Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码"></a>Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码</h4><p><strong>jsp九大内置对象：</strong>就是没有声明就可以使用的对象</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*</span><br><span class="line"><span class="number">2</span>.response：HttpServletResponse的对象，代表客户端的响应，几乎不用。</span><br><span class="line"><span class="number">3</span>.session:HttpSession对象，代表一次会话。*</span><br><span class="line"><span class="number">4</span>.application：ServletContext对象，代表当前web应用。*</span><br><span class="line"><span class="number">5</span>.config:ServletConfig对象，代表当前servlet，用于读取当前servlet配置信息。</span><br><span class="line"><span class="number">6</span>.out:JspWrite对象，调用print方法可以吧字符串输出到浏览器。</span><br><span class="line"><span class="number">7</span>.page：指的是当前jsp对应的servlet对象的引用。</span><br><span class="line"><span class="number">8</span>.PageContext:页面的上下文，可以获取其他<span class="number">8</span>个内置对象。*</span><br><span class="line"><span class="number">9</span>.exception:异常对象</span><br></pre></td></tr></table></figure>
+
+<h4 id="四大域对象："><a href="#四大域对象：" class="headerlink" title="四大域对象："></a><strong>四大域对象：</strong></h4><h5 id="application、session、request、pageContext-域对象从大到小"><a href="#application、session、request、pageContext-域对象从大到小" class="headerlink" title="application、session、request、pageContext(域对象从大到小)"></a>application、session、request、pageContext(域对象从大到小)</h5><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">application：最大与范围，范围限于当前web应用。</span><br><span class="line">session：范围限于一次会话，浏览器打开到关闭就是一次会话。</span><br><span class="line">request：范围限于一次请求。</span><br><span class="line">pageContext：范围限于当前页面。</span><br></pre></td></tr></table></figure>
+
+<h5 id="绝对路径：相对于当前web站点的根目录路径"><a href="#绝对路径：相对于当前web站点的根目录路径" class="headerlink" title="绝对路径：相对于当前web站点的根目录路径"></a>绝对路径：相对于当前web站点的根目录路径</h5><h5 id="站点："><a href="#站点：" class="headerlink" title="站点："></a>站点：</h5><p><a href="http://localhost:8080/Servlet03/a.jsp" target="_blank" rel="noopener">http://localhost:8080/Servlet03/a.jsp</a></p>
+<h5 id="http-localhost-8080-这就是站点"><a href="#http-localhost-8080-这就是站点" class="headerlink" title="http://localhost:8080 这就是站点"></a><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080</a> 这就是站点</h5><h5 id="Servlet03：当前web应用，就是contextpath"><a href="#Servlet03：当前web应用，就是contextpath" class="headerlink" title="/Servlet03：当前web应用，就是contextpath"></a>/Servlet03：当前web应用，就是contextpath</h5><h5 id="以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径"><a href="#以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径" class="headerlink" title="以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径"></a>以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径</h5><h5 id="：代表当前web应用的根目录-有时候代表当前web站点的根目录"><a href="#：代表当前web应用的根目录-有时候代表当前web站点的根目录" class="headerlink" title="/：代表当前web应用的根目录 有时候代表当前web站点的根目录"></a>/：代表当前web应用的根目录 有时候代表当前web站点的根目录</h5><h5 id="代表当前web应用的根目录：请求转发"><a href="#代表当前web应用的根目录：请求转发" class="headerlink" title="代表当前web应用的根目录：请求转发"></a>代表当前web应用的根目录：请求转发</h5><h5 id="有时候代表当前web站点的根目录："><a href="#有时候代表当前web站点的根目录：" class="headerlink" title="有时候代表当前web站点的根目录："></a>有时候代表当前web站点的根目录：</h5><h5 id="web-xml中配置servlet映射代表当前web应用的根目录"><a href="#web-xml中配置servlet映射代表当前web应用的根目录" class="headerlink" title="web.xml中配置servlet映射代表当前web应用的根目录"></a>web.xml中配置servlet映射代表当前web应用的根目录</h5><h5 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h5><h4 id="ok，到此结束！"><a href="#ok，到此结束！" class="headerlink" title="ok，到此结束！"></a>ok，到此结束！</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/05/8/" data-id="ck2yfuqpq0006uwnug5pv2ivz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/04/6/" class="article-date">
+  <time datetime="2019-11-04T09:02:47.000Z" itemprop="datePublished">2019-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/04/6/">我的第六篇博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tomcat下载及安装配置"><a href="#Tomcat下载及安装配置" class="headerlink" title="Tomcat下载及安装配置"></a><a href="https://smile-zyf.github.io/2019/11/03/Tomcat%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Tomcat下载及安装配置</a></h1><h2 id="1-首先，登录到Tomcat官方装包下载地址。"><a href="#1-首先，登录到Tomcat官方装包下载地址。" class="headerlink" title="1.首先，登录到Tomcat官方装包下载地址。"></a>1.首先，登录到Tomcat官方装包下载地址。</h2><p>1.在【Download】目录下，找到并点击合适版本的Tomcat。</p>
+<p><img src="https://i.loli.net/2019/11/05/qOztI3bQjvpaxHT.png" alt="2v1lHrhSJg4oVAY.png"></p>
+<p>2.点击[tomcat8]后，根据自己电脑操作系统的位数，再选择右侧【core】下的压缩包进行下载，并保存。</p>
+<p><img src="https://i.loli.net/2019/11/05/UmykdTYVOGh68q5.png" alt="lue8jA6pb79rof3.png"></p>
+<p>3.因为下载的该压缩为免安装版Tomcat，下载完成后，将该<strong>压缩包解压</strong>即可。</p>
+<p>（记住该<strong>解压文件的存放位置</strong>，后面环境变量配置会用到）</p>
+<p><img src="https://i.loli.net/2019/11/05/RUe67qAyiM3EQNt.png" alt="mgnRhuEvfQZSOFi.png"></p>
+<h2 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置"></a>2.环境变量配置</h2><p>1.鼠标右键点击【这台电脑】–&gt;选择【属性】-&gt;【高级系统设置】–&gt;【系统变量】。</p>
+<p><img src="https://i.loli.net/2019/11/05/CPw5USF3fHvDLq6.png" alt="V49j5xeuaTkAXUh.png"></p>
+<p><img src="https://i.loli.net/2019/11/05/SPCozEbFHd5Gfe9.png" alt="rF9ipmXEwBWg43G.png"></p>
+<p>2.然后，点击“系统变量”框下的【新建】按钮。</p>
+<p>（1）新建CATALINA_BASE变量</p>
+<p>变量名：CATALINA_BASE</p>
+<p>变量值：C:\my\apache-tomcat-8.5.42-windows-x64\apache-tomcat-8.5.42</p>
+<p>（Tomcat安装位置，即刚刚解压文件夹下bin文件所在位置）</p>
+<p><img src="https://i.loli.net/2019/11/05/JfYhNARlTxc76aC.png" alt="ZCj85eb4OGW6Bum.png"></p>
+<p>（2）新建CATALINA_HOME变量</p>
+<p>变量名：CATALINA_HOME</p>
+<p>变量值：C:\my\apache-tomcat-8.5.42-windows-x64\apache-tomcat-8.5.42</p>
+<p><img src="https://i.loli.net/2019/11/05/1paJwv3o5eRl4xB.png" alt="image.png"></p>
+<p>（3）找到Path变量，点击编辑</p>
+<p>变量名：Path</p>
+<p>变量值： %CATALINA_HOME%\bin</p>
+<p>（不要删除原有path变量值，直接在最后一行添加上这一句即可）</p>
+<p>这样Tomcat就配置好了。打开cmd命令提示符，输入startup后回车，就可以看到Tomcat成功启动了。</p>
+<p><img src="https://i.loli.net/2019/11/05/fXWu2OthNMGP7RS.png" alt="WRgEArbHVB1m2oL.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/14/hello-world/" data-id="ck2yft6j900001snu8ybqde3s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/04/6/" data-id="ck2yfuqpp0005uwnu96p6hui8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/04/5/" class="article-date">
+  <time datetime="2019-11-04T08:34:59.000Z" itemprop="datePublished">2019-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/04/5/">jsp实现分页效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1,在WebContent下新建一个jsp页面（如果列表里没有jsp选项，到other里找）</p>
+<p>这里jsp页面的名称为welcome, 点击finish，页面内容如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;%@ page language=<span class="string">"java"</span> <span class="keyword">import</span>=<span class="string">"com.th.serlvet.*"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line">AccountBean account = (AccountBean)session.getAttribute(<span class="string">"account"</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h2&gt;</span><br><span class="line">Welcome to <span class="string">"&lt;%= account.getUsername()%&gt;"</span> Login System!</span><br><span class="line">&lt;/h2&gt;</span><br><span class="line">This is the first javaWeb Project!</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2, 在WebContent下创建login.jsp文件，内容如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">"login"</span>&gt;</span><br><span class="line">    username:&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span>&gt;&lt;br&gt;</span><br><span class="line">    password:&lt;input type=<span class="string">"password"</span> name=<span class="string">"pwd"</span>&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3,在src目录下的com.th.serlvet下创建AccountBean.java文件，内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.th.serlvet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountBean</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String username = <span class="string">""</span>;</span><br><span class="line">	 <span class="keyword">private</span> String password = <span class="string">""</span>;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	  <span class="keyword">return</span> password;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">	  <span class="keyword">this</span>.password = password;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	  <span class="keyword">return</span> username;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">	  <span class="keyword">this</span>.username = username;</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4,在src目录下的com.th.serlvet下创建CheckAccount.java文件，内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.th.serlvet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheckAccount</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	 <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span></span></span><br><span class="line"><span class="function">	   <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">	  doGet(req,resp);</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="meta">@Override</span></span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span></span></span><br><span class="line"><span class="function">	   <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">	  HttpSession session = req.getSession();</span><br><span class="line">	  AccountBean account = <span class="keyword">new</span> AccountBean();</span><br><span class="line">	  String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">	  String pwd = req.getParameter(<span class="string">"pwd"</span>);</span><br><span class="line">	  account.setPassword(pwd);</span><br><span class="line">	  account.setUsername(username);</span><br><span class="line">	  <span class="keyword">if</span>((username != <span class="keyword">null</span>)&amp;&amp;(username.trim().equals(<span class="string">"jsp"</span>))) &#123;</span><br><span class="line">	   <span class="keyword">if</span>((pwd != <span class="keyword">null</span>)&amp;&amp;(pwd.trim().equals(<span class="string">"1"</span>))) &#123;</span><br><span class="line">	    System.out.println(<span class="string">"success"</span>);</span><br><span class="line">	    session.setAttribute(<span class="string">"account"</span>, account);</span><br><span class="line">	    String login_suc = <span class="string">"success.jsp"</span>;</span><br><span class="line">	    resp.sendRedirect(login_suc);</span><br><span class="line">	    <span class="keyword">return</span>;</span><br><span class="line">	   &#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	  String login_fail = <span class="string">"fail.jsp"</span>;</span><br><span class="line">	  resp.sendRedirect(login_fail);</span><br><span class="line">	  <span class="keyword">return</span>;</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5,在WebContent目录下编写success.jsp文件，内容如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span>%&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">import</span>=<span class="string">"com.th.serlvet.*"</span>%&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span><br><span class="line"><span class="tag">    <span class="attr">AccountBean</span> <span class="attr">account</span> = <span class="string">(AccountBean)session.getAttribute(</span>"<span class="attr">account</span>");</span></span><br><span class="line"><span class="tag">    %&gt;</span></span><br><span class="line">    username:<span class="tag">&lt;<span class="name">%=</span> <span class="attr">account.getUsername</span>()%&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">     password:<span class="tag">&lt;<span class="name">%=</span> <span class="attr">account.getPassword</span>() %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>6，在WebContent目录下编写fail.jsp文件，内容如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span>%&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> Login Failed! <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>在WebContent/WEB-INF文件夹下新建web.xml文件，其内容如下：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">version</span>=<span class="string">"2.5"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/javaee"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/javaee </span></span></span><br><span class="line"><span class="tag"><span class="string"> http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>login.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">description</span>&gt;</span>This is the description of my J2EE component<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>This is the display name of my J2EE component<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CheckAccount<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.th.serlvet.CheckAccount<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CheckAccount<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/login<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/04/5/" data-id="ck2yfuqpn0003uwnubrw6eeu3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/04/4/" class="article-date">
+  <time datetime="2019-11-04T08:02:59.000Z" itemprop="datePublished">2019-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/04/4/">jsp内置对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>1.request对象</p>
+<p>​     客户端的请求信息被封装在request对象中，通过它才能了解到客户的需求，然后做出响应。它是HttpServletRequest类的实例。</p>
+<p>序号 方 法 说 明<br>1   object getAttribute(String name) 返回指定属性的属性值<br>2   Enumeration getAttributeNames() 返回所有可用属性名的枚举<br>3   String getCharacterEncoding() 返回字符编码方式<br>4   int getContentLength() 返回请求体的长度（以字节数）<br>5   String getContentType() 得到请求体的MIME类型<br>6   ServletInputStream getInputStream() 得到请求体中一行的二进制流<br>7   String getParameter(String name) 返回name指定参数的参数值<br>8   Enumeration getParameterNames() 返回可用参数名的枚举<br>9   String[] getParameterValues(String name) 返回包含参数name的所有值的数组<br>10   String getProtocol() 返回请求用的协议类型及版本号<br>11   String getScheme() 返回请求用的计划名,如:http.https及ftp等<br>12   String getServerName() 返回接受请求的服务器主机名<br>13   int getServerPort() 返回服务器接受此请求所用的端口号<br>14   BufferedReader getReader() 返回解码过了的请求体<br>15   String getRemoteAddr() 返回发送此请求的客户端IP地址<br>16   String getRemoteHost() 返回发送此请求的客户端主机名<br>17   void setAttribute(String key,Object obj) 设置属性的属性值<br>18   String getRealPath(String path) 返回一虚拟路径的真实路径</p>
+<p>public void doGet(HttpServletRequest request, HttpServletResponse response)<br>            throws ServletException, IOException {</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line">PrintWriter out = response.getWriter();</span><br><span class="line"><span class="comment">// 获取上下文路径(重要)</span></span><br><span class="line">out.print(<span class="string">"上下文路径："</span> + request.getContentType() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 获取协议</span></span><br><span class="line">out.print(<span class="string">"协议：  "</span> + request.getProtocol() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 获取客户端ip</span></span><br><span class="line">out.print(<span class="string">"客户端ip： "</span> + request.getRemoteAddr() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 客户端主机名</span></span><br><span class="line">out.print(<span class="string">"主机名："</span> + request.getRemoteHost() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 编码</span></span><br><span class="line">out.print(<span class="string">"编码："</span> + request.getCharacterEncoding() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 请求类型</span></span><br><span class="line">out.print(<span class="string">"请求类型："</span> + request.getMethod() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// URL中的附加路径信息</span></span><br><span class="line">out.print(<span class="string">"URL中的附加信息 ："</span> + request.getPathInfo() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 映射到服务器实际路径之后的路径信息</span></span><br><span class="line">out.print(<span class="string">"映射到服务器实际路径之后的路径信息："</span> + request.getPathTranslated() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 请求URL</span></span><br><span class="line">out.print(<span class="string">"请求URL"</span> + request.getRequestURL() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 获取request头</span></span><br><span class="line">out.print(request.getHeader(<span class="string">"Host"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Referer"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Accept-Language"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Accept-Encoding"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"User-Agent"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Connection"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Cookie"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getScheme() + <span class="string">"&lt;br/&gt;"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>2.response对象</p>
+<p>​     response对象包含了响应客户请求的有关信息，但在JSP中很少直接用到它。它是HttpServletResponse类的实例。</p>
+<p>序号 方 法 说 明<br>1   String getCharacterEncoding() 返回响应用的是何种字符编码<br>2   ServletOutputStream getOutputStream() 返回响应的一个二进制输出流<br>3   PrintWriter getWriter() 返回可以向客户端输出字符的一个对象<br>4   void setContentLength(int len) 设置响应头长度<br>5   void setContentType(String type) 设置响应的MIME类型<br>6   sendRedirect(java.lang.String location) 重新定向客户端的请求<br>　import org.springframework.web.context.request.RequestContextHolder;<br>import org.springframework.web.context.request.ServletRequestAttributes;</p>
+<p>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;sql:query <span class="keyword">var</span>=``<span class="string">"result"</span>` `&gt;</span><br><span class="line">  ``select * from mytable order by nameid</span><br><span class="line">&lt;/sql:query&gt;</span><br><span class="line">&lt;%request.setAttribute(``<span class="string">"nameid"</span>``, ``<span class="string">"2"</span>``); %&gt;</span><br><span class="line">&lt;myTag:cupSize cupSize=``"1"` `cupSizes=``"$&#123;result&#125;"``&gt;&lt;/myTag:cupSize&gt;</span><br><span class="line">&lt;myTag:cupSize cupSize=``"$&#123;nameid&#125;"` `cupSizes=``"$&#123;result&#125;"``&gt;&lt;/myTag:cupSize&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.session对象</p>
+<p>​     session对象指的是客户端与服务器的一次会话，从客户连到服务器的一个WebApplication开始，直到客户端与服务器断开连接为止。它是HttpSession类的实例.</p>
+<p>序号 方 法 说 明<br>1   long getCreationTime() 返回SESSION创建时间<br>2   public String getId() 返回SESSION创建时JSP引擎为它设的惟一ID号<br>3   long getLastAccessedTime() 返回此SESSION里客户端最近一次请求时间<br>4   int getMaxInactiveInterval() 返回两次请求间隔多长时间此SESSION被取消(ms)<br>5   String[] getValueNames() 返回一个包含此SESSION中所有可用属性的数组<br>6   void invalidate() 取消SESSION，使SESSION不可用<br>7   boolean isNew() 返回服务器创建的一个SESSION,客户端是否已经加入<br>8   void removeValue(String name) 删除SESSION中指定的属性<br>9   void setMaxInactiveInterval() 设置两次请求间隔多长时间此SESSION被取消(ms)</p>
+<p>test1.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;HTML&gt;``&lt;HEAD&gt;``&lt;TITLE&gt; Document &lt;/TITLE&gt;``&lt;/HEAD&gt;``&lt;BODY BGCOLOR=``"#FFFFFF"``&gt;``&lt;%``session.setAttribute(``"str"``,``new` `String(``"this is test"``));``%&gt;``&lt;/BODY&gt;``&lt;/HTML&gt;`</span><br></pre></td></tr></table></figure>
+
+<p>test2.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;HTML&gt;``&lt;HEAD&gt;``&lt;TITLE&gt; New Document &lt;/TITLE&gt;``&lt;/HEAD&gt;``&lt;BODY BGCOLOR=``"#FFFFFF"``&gt;``&lt;%``String ls_str=``null``;``ls_str=(String)session.getAttribute(``"str"``);``out.println(“从session里取出的值为：”+ls_str);``%&gt;``&lt;/BODY&gt;``&lt;/HTML&gt;`</span><br></pre></td></tr></table></figure>
+
+<p>判断用户是否执行刷新操作，避免刷新时也进行相关操作，区分是否首次进入本页面，session.isNew()。</p>
+<p>在线人数统计的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;%@ page contentType=``"text/html; charset=GB2312"` `%&gt;``&lt;HTML&gt;``&lt;HEAD&gt;``&lt;TITLE&gt;application计数器&lt;/TITLE&gt;``&lt;/HEAD&gt;``&lt;BODY&gt;``&lt;BR&gt;``&lt;%``  ``Integer number=(Integer)application.getAttribute(``"Count"``);``  ``//检查Count属性是否可取得`` ``if``(number==``null``)``  ``&#123;``    ``number=``new` `Integer(``1``);``    ``application.setAttribute(``"Count"``,number); ``  ``&#125;``  ``if``(session.isNew()==``true``) ``//判断用户是否执行刷新操作``  ``&#123;`` ``//将取得的值增加1`` ``number=``new` `Integer(number.intValue()+``1``);``    ``application.setAttribute(``"Count"``,number); ``  ``&#125;``%&gt;``&lt;P&gt;&lt;P&gt;您是第``  ``&lt;%``int` `a=((Integer)pageContext.getAttribute(``"Count"``,PageContext.APPLICATION_SCOPE)).intValue();``  ``%&gt;``  ``&lt;%=a%&gt;``个访问本站的客户。``&lt;/BODY&gt;``&lt;/HTML&gt;`</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/04/4/" data-id="ck2yfuqpm0002uwnufct1gxhl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/31/3/" class="article-date">
+  <time datetime="2019-10-31T01:05:06.000Z" itemprop="datePublished">2019-10-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/31/3/">数据库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/*连接mysql*/</span><br><span class="line">mysql -h 地址 -P 端口 -u 用户名 -p 密码</span><br><span class="line">例如: mysql -h 127.0.0.1 -P 3306 -u root -p ****</span><br><span class="line"></span><br><span class="line">/*退出mysql*/</span><br><span class="line">exit;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>数据库操作</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#数据库操作</span><br><span class="line">/*关键字:create 创建数据库(增)*/</span><br><span class="line">create database 数据库名 [数据库选项];</span><br><span class="line">例如: create database test default charset utf8 collate utf8_bin;</span><br><span class="line">/*数据库选项:字符集和校对规则*/</span><br><span class="line">字符集:一般默认utf8;</span><br><span class="line">校对规则常见: ⑴ci结尾的:不分区大小写 ⑵cs结尾的:区分大小写 ⑶bin结尾的：二进制编码进行比较</span><br><span class="line"></span><br><span class="line">/*关键字:show 查看当前有哪些数据库(查)*/</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line">/*查看数据库的创建语句*/</span><br><span class="line">show create database 数据库名;</span><br><span class="line"></span><br><span class="line">/*关键字:alter 修改数据库的选项信息(改)*/</span><br><span class="line">alter database 数据库名 [新的数据库选项];</span><br><span class="line">例如: alter database test default charset gbk;</span><br><span class="line"></span><br><span class="line">/*关键字:drop  删除数据库(删)*/</span><br><span class="line">drop database 数据库名;</span><br><span class="line"></span><br><span class="line">/*关键字:use 进入指定的数据库*/</span><br><span class="line">use 数据库名;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>表的操作</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#表的操作</span><br><span class="line">/*关键字:create 创建数据表(增)*/</span><br><span class="line">create table 表名(</span><br><span class="line">字段1  字段1类型 [字段选项],</span><br><span class="line">字段2  字段2类型 [字段选项],</span><br><span class="line">字段n  字段n类型 [字段选项]</span><br><span class="line">)表选项信息;</span><br><span class="line"></span><br><span class="line">例如: create table test(</span><br><span class="line">  id int(10) unsigned not null auto_increment comment &apos;id&apos;,</span><br><span class="line">  content varchar(100) not null default &apos;&apos; comment &apos;内容&apos;,</span><br><span class="line">  time int(10) not null default 0 comment &apos;时间&apos;,</span><br><span class="line">  primary key (id)</span><br><span class="line">)engine=InnoDB default charset=utf8 comment=&apos;测试表&apos;;</span><br><span class="line"></span><br><span class="line">语法解析(下文MySQL列属性单独解析):</span><br><span class="line">如果不想字段为NULL可以设置字段的属性为NOT NUL,在操作数据库时如果输入该字段的数据为NULL,就会报错.</span><br><span class="line">AUTO_INCREMENT定义列为自增的属性,一般用于主键,数值会自动加1.</span><br><span class="line">PRIMARY KEY关键字用于定义列为主键.可以使用多列来定义主键,列间以逗号分隔.</span><br><span class="line">ENGINE 设置存储引擎,CHARSET 设置编码, comment 备注信息.</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/*关键字:show 查询当前数据库下有哪些数据表(查)*/</span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">/*关键字:like 模糊查询*/</span><br><span class="line">通配符：_可以代表任意的单个字符，%可以代表任意的字符</span><br><span class="line">show tables like &apos;模糊查询表名%&apos;;</span><br><span class="line"></span><br><span class="line">/*查看表的创建语句*/</span><br><span class="line">show create table 表名;</span><br><span class="line"></span><br><span class="line">/*查看表的结构*/</span><br><span class="line">desc 表名;</span><br><span class="line"></span><br><span class="line">/*关键字:drop  删除数据表(删)*/</span><br><span class="line">drop table [if exists] 表名</span><br><span class="line">例如: drop table if exists test;</span><br><span class="line"></span><br><span class="line">/*关键字:alter 修改表名(改)*/</span><br><span class="line">alter table 旧表名 rename to 新表名;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*修改列定义*/</span><br><span class="line">/*关键字:add 增加一列*/</span><br><span class="line">alter table 表名 add 新列名 字段类型 [字段选项];</span><br><span class="line">例如: alter table test add name char(10) not null default &apos;&apos; comment &apos;名字&apos;;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*关键字:first 修改字段排序,把某个字段放在最前面*/</span><br><span class="line">alter table 表名 modify 字段名 字段类型 [字段选项] first;</span><br><span class="line">例如: alter table test modify name varchar(100) not null default &apos;admin&apos; comment &apos;最前面&apos; first;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*关键字:after 修改字段排序,字段名1放在字段名2的后面*/</span><br><span class="line">alter table 表名 modify 字段名1 字段类型 [字段选项] after 字段名2;</span><br><span class="line">例如: alter table test modify name varchar(100) not null default &apos;admin&apos; comment &apos;time字段后面&apos; after time;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*关键字:change 重命名字段*/</span><br><span class="line">alter table 表名 change 原字段名 新字段名 新的字段类型 [新的字段选项];</span><br><span class="line">例如: alter table test change name username varchar(50) not null default &apos;&apos; comment &apos;用户名字&apos;;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*修改表选项*/ </span><br><span class="line">alter table 表名 表选项信息;</span><br><span class="line">例如: alter table test engine Myisam default charset gbk; --修改存储引擎和修改表的字符集</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>数据操作</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#数据操作</span><br><span class="line">/*关键字:insert 插入数据(增)*/</span><br><span class="line">insert into 表名(字段列表) values(值列表);</span><br><span class="line">例如: create table user(</span><br><span class="line">  id int(10) unsigned not null auto_increment comment &apos;id&apos;,</span><br><span class="line">  name char(10) not null default &apos;&apos; comment &apos;名字&apos;,</span><br><span class="line">  age int(3) not null default 0 comment &apos;年龄&apos;,</span><br><span class="line">  primary key (id)</span><br><span class="line">)engine=InnoDB default charset=utf8 comment=&apos;用户表&apos;;</span><br><span class="line">--插入数据</span><br><span class="line">insert into user(id,name,age) values(1,&apos;admin_a&apos;,50);</span><br><span class="line">insert into user(name) values(&apos;admin_b&apos;);</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*关键字:select 查询数据(查)*/</span><br><span class="line">select *[字段列表] from 表名[查询条件];</span><br><span class="line">例如: select * from user;--查全部字段用*代替</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name from user where age&gt;0;--查name字段,age大于0</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*关键字:delete 删除数据(删)*/</span><br><span class="line">delete from 表名[删除条件];</span><br><span class="line">例如: delete from user where age&lt;1;--删除age小于1数据</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*关键字:update 修改数据(改)*/</span><br><span class="line">update 表名 set 字段1=新值1,字段n=新值n [修改条件];</span><br><span class="line">例如: update user set age=100 where name=&apos;admin_a&apos;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/31/3/" data-id="ck2yfuqpo0004uwnufx4f1por" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/31/2/" class="article-date">
+  <time datetime="2019-10-31T00:26:22.000Z" itemprop="datePublished">2019-10-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/31/2/">JDBC连接数据库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JDBC连接数据库，创建一个以JDBC连接数据库的程序，包含7个步骤：    </p>
+<p>1、JDBC所需的四个参数（user，password，url，driverClass）</p>
+<p>（1）user用户名</p>
+<p>（2）password密码</p>
+<p>（3）URL定义了连接数据库时的协议、子协议、数据源标识，它们之间用冒号隔开。  书写形式：  <strong>协议：子协议：数据源标识</strong><br>    协议：在JDBC中总是以jdbc开始<br>    子协议：是桥连接的驱动程序或是数据库管理系统名称。<br>    数据源标识：标记找到数据库来源的地址与连接端口。<br>    例如：（MySql的连接URL）<br>    <strong>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=gbk</strong> ;<br>    useUnicode=true：表示使用Unicode字符集。如果characterEncoding设置为<br>    gb2312或GBK，本参数必须设置为true 。characterEncoding=gbk：字符编码方式。</p>
+<p>（4）driverClass连接数据库所需的驱动。</p>
+<p>2、加载JDBC驱动程序：    </p>
+<p>​    在连接数据库之前，首先要加载想要连接的数据库的驱动到JVM（Java虚拟机），这通过java.lang.Class类的静态方法forName(String  className)实现。    </p>
+<p>​    例如：    </p>
+<p>​    try{//加载MySql的驱动类<br>​         Class.forName(“com.mysql.jdbc.Driver”) ;<br>​    }catch(ClassNotFoundException e){<br>​         System.out.println(“找不到驱动程序类 ，加载驱动失败！”);<br>​         e.printStackTrace() ;<br>​    } </p>
+<p>   成功加载后，会将Driver类的实例注册到DriverManager类中。    </p>
+<p>3、创建数据库的连接    </p>
+<p>​    •要连接数据库，需要向java.sql.DriverManager请求并获得Connection对象，该对象就代表一个数据库的连接。    </p>
+<p>​    •使用DriverManager的getConnectin(String url , String username ,  String password )方法传入指定的欲连接的数据库的路径、数据库的用户名和密码来获得。    </p>
+<p>​     例如：    </p>
+<p>​     //连接MySql数据库，用户名和密码都是root    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span> ;     </span><br><span class="line">     String username = <span class="string">"root"</span> ;    </span><br><span class="line">     String password = <span class="string">"root"</span> ;    </span><br><span class="line">     <span class="keyword">try</span>&#123;    </span><br><span class="line">          Connection con = DriverManager.getConnection(url , username , password ) ;    </span><br><span class="line">     &#125;<span class="keyword">catch</span>(SQLException se)&#123;    </span><br><span class="line">          System.out.println(<span class="string">"数据库连接失败！"</span>);    </span><br><span class="line">          se.printStackTrace() ;    </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>4、创建一个preparedStatement    </p>
+<p>​    •要执行SQL语句，必须获得java.sql.Statement实例，Statement实例分为以下3 种类型：    </p>
+<p>​      1、执行静态SQL语句。通常通过Statement实例实现。    </p>
+<p>​      2、执行动态SQL语句。通常通过PreparedStatement实例实现。    </p>
+<p>​      3、执行数据库存储过程。通常通过CallableStatement实例实现。    </p>
+<p>•</p>
+<p>具体的实现方式：    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Statement stmt = con.createStatement() ;    </span><br><span class="line">       PreparedStatement pstmt = con.prepareStatement(sql) ;    </span><br><span class="line">       CallableStatement cstmt = con.prepareCall(<span class="string">"&#123;CALL demoSp(? , ?)&#125;"</span>) ;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>5、执行SQL语句    </p>
+<p>•</p>
+<p>Statement接口提供了三种执行SQL语句的方法：executeQuery 、executeUpdate和execute    </p>
+<p>​    1、ResultSet executeQuery(String sqlString)：执行查询数据库的SQL语句，返回一个结果集（ResultSet）对象。    </p>
+<p>​    2、int executeUpdate(String sqlString)：用于执行INSERT、UPDATE或 DELETE语句以及SQL DDL语句，如：CREATE TABLE和DROP TABLE等    </p>
+<p>​    3、execute(sqlString):用于执行返回多个结果集、多个更新计数或二者组合的语句。    </p>
+<p>•</p>
+<p>具体实现的代码：    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ResultSet rs = stmt.executeQuery(<span class="string">"SELECT * FROM ..."</span>) ;    </span><br><span class="line">          <span class="keyword">int</span> rows = stmt.executeUpdate(<span class="string">"INSERT INTO ..."</span>) ;    </span><br><span class="line">          <span class="keyword">boolean</span> flag = stmt.execute(String sql) ;</span><br></pre></td></tr></table></figure>
+
+<p>6、遍历结果集    </p>
+<p>​    两种情况：    </p>
+<p>​     1、执行更新返回的是本次操作影响到的记录数。    </p>
+<p>​     2、执行查询返回的结果是一个ResultSet对象。    </p>
+<p>​    • ResultSet包含符合SQL语句中条件的所有行，并且它通过一套get方法提供了对这些    </p>
+<p>​      行中数据的访问。    </p>
+<p>​    • 使用结果集（ResultSet）对象的访问方法获取数据：    </p>
+<p>​     </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">while</span>(rs.next())&#123;    </span><br><span class="line">         String name = rs.getString(<span class="string">"name"</span>) ;    </span><br><span class="line">          String pass = rs.getString(<span class="number">1</span>) ; <span class="comment">// 此方法比较高效    </span></span><br><span class="line">     &#125;</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">​    （列是从左到右编号的，并且从列<span class="number">1</span>开始）</span><br></pre></td></tr></table></figure>
+
+<p>7、处理异常，关闭JDBC对象资源     </p>
+<p>•</p>
+<p>操作完成以后要把所有使用的JDBC对象全都关闭，以释放JDBC资源，关闭顺序和声 明顺序相反：    </p>
+<p>​     1、先关闭requestSet    </p>
+<p>​     2、再关闭preparedStatement    </p>
+<p>​     3、最后关闭连接对象connection       </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(rs !=<span class="literal">null</span>)&#123;   <span class="comment">// 关闭记录集    </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      rs.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      e.printStackTrace();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(stmt !=<span class="literal">null</span>)&#123;   <span class="comment">// 关闭声明    </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      stmt.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      e.printStackTrace();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(conn !=<span class="literal">null</span>)&#123;  <span class="comment">// 关闭连接对象    </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      conn.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      e.printStackTrace();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/31/2/" data-id="ck2yfuqpk0001uwnude1xb74e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/30/1/" class="article-date">
+  <time datetime="2019-10-30T14:40:16.000Z" itemprop="datePublished">2019-10-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/30/1/">Java面向对象知识点总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java面向对象知识点总结"><a href="#Java面向对象知识点总结" class="headerlink" title="Java面向对象知识点总结"></a><a href="https://smile-zyf.github.io/2019/10/12/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">Java面向对象知识点总结</a></h1><h2 id="第二章-类和对象的创建"><a href="#第二章-类和对象的创建" class="headerlink" title="第二章 类和对象的创建"></a>第二章 类和对象的创建</h2><p>1.面向对象的概念<br>面向对象的思想是把一个项目，一件事情分成更小的项目，或者说分成一个个更小的部分，<br>每一部分负责什么方面的功能，最后再由这些部分组合而成为一个整体。</p>
+<p>2.类的创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">语法：<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;&#125;</span><br><span class="line">	File---&gt;<span class="keyword">new</span>---&gt;<span class="class"><span class="keyword">class</span>---&gt;类名</span></span><br></pre></td></tr></table></figure>
+
+<p>3.创建对象<br>类名 对象名 =new 类名()；<br>对象名.方法名()；对象名.属性<br>4.构造方法：方法名和类名相同，没有返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class 类名&#123;</span><br><span class="line">	public 类名（）&#123;&#125;//主要作用是初始化操作</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.构造方法的重载：在同一个类中，方法名相同，参数个数，顺序，类型不相同的构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line">		<span class="keyword">public</span> 类名（）&#123;&#125;</span><br><span class="line">		<span class="keyword">public</span> 类名（String name，<span class="keyword">int</span> age）&#123;&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.构造方法的执行：<br>new 类名（）；—&gt;执行构造方法<br>super（）；—&gt;执行了父类的构造方法<br>7.static静态修饰符<br>静态修饰符可以修饰属性，方法，代码块<br>类名.属性 类名.方法名<br>8.Java内存（栈和堆，static，方法区，gc（垃圾回收机制））</p>
+<h2 id="第三章-面向对象三大特征—封装"><a href="#第三章-面向对象三大特征—封装" class="headerlink" title="第三章 面向对象三大特征—封装"></a>第三章 面向对象三大特征—封装</h2><p>1.封装的概念<br>封装是指将对象的状态信息隐藏在对象内部，不允许外部程序直接访问对象内部信息<br>而是通过该类所提供的方法来实现对内部信息的操作访问<br>2.封装的步骤<br>（1）把属性私有化（private）<br>（2）对这些属性设置get和set方法<br>（3）调用处理这些方法<br>3.封装的作用：避免一些用户不合理的操作<br>4.修饰符<br>（1）public—&gt;公共的：在一个项目中都可以访问，权限最高<br>（2）private—&gt;私有的：只能在本类中进行访问，权限最低<br>（3）protected—&gt;安全的，受保护的：同一个包中才能进行访问，继承中子类可以访问父类<br>（4）default—&gt;默认的：同一个包中能访问</p>
+<h2 id="第四章-面向对象的三大特征—继承"><a href="#第四章-面向对象的三大特征—继承" class="headerlink" title="第四章 面向对象的三大特征—继承"></a>第四章 面向对象的三大特征—继承</h2><p>1.继承的概念<br>子类继承父类的属性，方法。<br>2.继承的关键字：extends<br>3.继承的语法：<br>public class 类名 extends 父类{}<br>4.使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类public void shout()&#123;	</span></span><br><span class="line">		system.out.println(<span class="string">"动物发出叫声"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子类重写public viod shout()&#123;				system.out.println("某一种动物发出叫声");</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试public static void main(String[]args)&#123;	</span></span><br><span class="line">父类 引用变量名=<span class="keyword">new</span> 父类();<span class="comment">//创建父类的实例对象	</span></span><br><span class="line">引用变量名.shout();<span class="comment">//调用父类重写shout()方法&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>5.父类构造方法调用：super（）；<br>调用父类的构造方法必须在子类中调用<br>必须在子类构造方法的第一行<br>6.重写@Override<br>必须继承<br>方法名一致，参数个数，顺序，类型全部一致</p>
+<h2 id="第五章-面向对象（多态）"><a href="#第五章-面向对象（多态）" class="headerlink" title="第五章 面向对象（多态）"></a>第五章 面向对象（多态）</h2><p>1.多态的概念<br>指不同类的对象对同一消息做出响应<br>2.多态的必要条件<br>继承<br>重写<br>父类引用指向子类对象（向上转型）<br>3.多态的使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span></span>&#123;</span><br><span class="line"> 			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cooking</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 				System.out.println(<span class="string">"米饭"</span>);</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line">  	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line"> 			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cooking</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 				System.out.println(<span class="string">"熬粥"</span>);</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">				Father son=<span class="keyword">new</span> Son();</span><br><span class="line">				son.cooking();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.向下转型<br>Son son=(Son)father;</p>
+<h2 id="第六章-抽象"><a href="#第六章-抽象" class="headerlink" title="第六章 抽象"></a>第六章 抽象</h2><p>1.抽象的概念<br>抽象就是用程序的逻辑方法和数据结构来模拟现实的世界<br>2.抽象的关键字<br>abstract<br>可以修饰类，可以修饰方法<br>3.抽象的用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象类</span></span><br><span class="line"> 		<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line"> 			<span class="comment">//抽象方法没有方法体</span></span><br><span class="line"> 			<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> 方法名();	</span><br><span class="line"> 		&#125;</span><br><span class="line"><span class="comment">//当父类是抽象类的时候，子类必须重写父类里面的抽象方法</span></span><br></pre></td></tr></table></figure>
+
+<p>4.final修饰符：最终的<br>修饰变量，修饰方法，修饰类<br>1.当修饰变量时，变量转换成常量，常量的值不能改变<br>final int a=18;//a=18;不能改变,必须给一个初始值<br>2.当修饰方法时，该方法不能被重写<br>3.当修饰类时，该类不能被继承</p>
+<h2 id="第七章-接口"><a href="#第七章-接口" class="headerlink" title="第七章 接口"></a>第七章 接口</h2><p>1.接口的概念<br>接口是一套规范，满足这个规范的设备，就可以将他们组装到一起，也可以实现具体复杂事物但有规律的功能<br>2.接口的关键字<br>interface<br>3.接口的语法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">实现接口的关键字  implements</span><br><span class="line">  	<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> 接口名</span>&#123;</span><br><span class="line">  		<span class="comment">//接口是纯抽象类</span></span><br><span class="line">  		<span class="comment">//接口里面的方法都是抽象方法</span></span><br><span class="line">  		<span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">()</span></span>;</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Play</span> <span class="keyword">implements</span> 接口名</span>&#123;</span><br><span class="line">  		<span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">()</span></span>&#123;</span><br><span class="line">  		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">  	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">  		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  			Play play=<span class="keyword">new</span> Play();</span><br><span class="line">  			play.setData();</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">注意接口可以进行多继承</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> 接口名 <span class="keyword">extends</span> 接口名，接口名</span>&#123;&#125;</span><br><span class="line">    一般用法</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名 <span class="keyword">extends</span> 父类 <span class="keyword">implements</span> 接口，接口</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第八章-集合框架"><a href="#第八章-集合框架" class="headerlink" title="第八章 集合框架"></a>第八章 集合框架</h2><p>1.ArrayList<br>1.用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList list=new ArrayList();</span><br><span class="line">  		list.add();//添加数据</span><br><span class="line">  		list.get();//获取数据</span><br></pre></td></tr></table></figure>
+
+<p>2.Map<br>用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map map=new HasMap();</span><br><span class="line">  		map.put(key,value);//key不能重复</span><br><span class="line">  		map.get(key);//获取key对象的value</span><br></pre></td></tr></table></figure>
+
+<p>3.泛型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list=<span class="keyword">new</span> ArrayList&gt;&lt;String&gt;();</span><br><span class="line"> 		Map&lt;String,String&gt; map=<span class="keyword">new</span> HasMap&lt;String,String&gt;();</span><br><span class="line"> 		ArrayList&lt;Map&lt;String,String&gt;&gt; list=<span class="keyword">new</span> ArrayList&gt;&lt;Map&lt;String,String&gt;();</span><br></pre></td></tr></table></figure>
+
+<h2 id="第九章-高级功能-文件操作"><a href="#第九章-高级功能-文件操作" class="headerlink" title="第九章 高级功能-文件操作"></a>第九章 高级功能-文件操作</h2><p>1.文件概述<br>文件是有具体内容或用途的，而文件夹是用来放置这些文件的。文件在java中对应的类是File。File类是IO包中唯一代表磁盘文件本身的对象。通过File来创建，删除，重命名文件。<br>2.流<br>在Java中所读取到的信息，是通过一根管道，输送到数据文件中的。这跟管道中的信息，称之为“流”(Stream)。可以分为字节流和输出流。<br>3.使用FileWrite类写文件示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        Writer fw=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fw=<span class="keyword">new</span> FileWriter(<span class="string">"d:/sample.txt"</span>);</span><br><span class="line">            <span class="comment">//写入信息</span></span><br><span class="line">            fw.write(<span class="string">"我热爱JAVA编程！"</span>);</span><br><span class="line">            fw.flush();<span class="comment">//刷新缓冲区</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">if</span> (fw!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                fw.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                <span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十章-多线程"><a href="#第十章-多线程" class="headerlink" title="第十章 多线程"></a>第十章 多线程</h2><p>1.线程可以理解成是在程序中独立运行的子任务。<br>2.线程的创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Text</span></span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">			DownloanA downloadA = <span class="keyword">new</span> DownloanA();</span><br><span class="line">            Thread myThread =<span class="keyword">new</span> Thread(downloadA);</span><br><span class="line">            myThread.start();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloanA</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">            download();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"进入mp3下载线程："</span>+Thread.currentThread().getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.多线程的使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程1</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> /*<span class="keyword">implements</span> <span class="title">Runnable</span>*/ <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			System.out.println(<span class="string">"开启了多线程1"</span>);		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//线程2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread1</span> /*<span class="keyword">implements</span> <span class="title">Runnable</span>*/<span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			System.out.println(<span class="string">"开启了多线程2"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">/*MyThread myThread=new MyThread();</span></span><br><span class="line"><span class="comment">		//myThread.run();</span></span><br><span class="line"><span class="comment">		new Thread(myThread).start();</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		MyThread1 myThread1=new MyThread1();</span></span><br><span class="line"><span class="comment">		//myThread1.run();</span></span><br><span class="line"><span class="comment">		new Thread(myThread1).start();*/</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*MyThread myThread=new MyThread();</span></span><br><span class="line"><span class="comment">		myThread.start();</span></span><br><span class="line"><span class="comment">		MyThread1 myThread1=new MyThread1();</span></span><br><span class="line"><span class="comment">		myThread1.start();*/</span></span><br><span class="line">		<span class="comment">//System.out.println("main:"+Thread.currentThread().getName());</span></span><br><span class="line">		Thread thread=<span class="keyword">new</span> Thread(<span class="string">"my线程"</span>)&#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">				System.out.println(<span class="string">"新线程："</span>+Thread.currentThread().getName());</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="comment">//thread.run();</span></span><br><span class="line">		thread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/30/1/" data-id="ck2yfuqpy0008uwnu9m0f9wu0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -128,7 +683,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
     </div>
   </div>
 
@@ -141,7 +696,23 @@
       <ul>
         
           <li>
-            <a href="/2019/11/14/hello-world/">Hello World</a>
+            <a href="/2019/11/10/10/">Request和Response的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/10/9/">JSP中使用Cookies实现登陆信息的保存</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/8/">初识jsp</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/6/">我的第六篇博客</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/5/">jsp实现分页效果</a>
           </li>
         
       </ul>

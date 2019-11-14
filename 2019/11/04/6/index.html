@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>我的第六篇博客 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Tomcat下载及安装配置1.首先，登录到Tomcat官方装包下载地址。1.在【Download】目录下，找到并点击合适版本的Tomcat。  2.点击[tomcat8]后，根据自己电脑操作系统的位数，再选择右侧【core】下的压缩包进行下载，并保存。  3.因为下载的该压缩为免安装版Tomcat，下载完成后，将该压缩包解压即可。 （记住该解压文件的存放位置，后面环境变量配置会用到）  2.环境变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的第六篇博客">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;6&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Tomcat下载及安装配置1.首先，登录到Tomcat官方装包下载地址。1.在【Download】目录下，找到并点击合适版本的Tomcat。  2.点击[tomcat8]后，根据自己电脑操作系统的位数，再选择右侧【core】下的压缩包进行下载，并保存。  3.因为下载的该压缩为免安装版Tomcat，下载完成后，将该压缩包解压即可。 （记住该解压文件的存放位置，后面环境变量配置会用到）  2.环境变">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;qOztI3bQjvpaxHT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;UmykdTYVOGh68q5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;RUe67qAyiM3EQNt.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;CPw5USF3fHvDLq6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;SPCozEbFHd5Gfe9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;JfYhNARlTxc76aC.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;1paJwv3o5eRl4xB.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;fXWu2OthNMGP7RS.png">
+<meta property="og:updated_time" content="2019-11-05T03:28:31.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;05&#x2F;qOztI3bQjvpaxHT.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/04/6/" class="article-date">
+  <time datetime="2019-11-04T09:02:47.000Z" itemprop="datePublished">2019-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      我的第六篇博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tomcat下载及安装配置"><a href="#Tomcat下载及安装配置" class="headerlink" title="Tomcat下载及安装配置"></a><a href="https://smile-zyf.github.io/2019/11/03/Tomcat%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Tomcat下载及安装配置</a></h1><h2 id="1-首先，登录到Tomcat官方装包下载地址。"><a href="#1-首先，登录到Tomcat官方装包下载地址。" class="headerlink" title="1.首先，登录到Tomcat官方装包下载地址。"></a>1.首先，登录到Tomcat官方装包下载地址。</h2><p>1.在【Download】目录下，找到并点击合适版本的Tomcat。</p>
+<p><img src="https://i.loli.net/2019/11/05/qOztI3bQjvpaxHT.png" alt="2v1lHrhSJg4oVAY.png"></p>
+<p>2.点击[tomcat8]后，根据自己电脑操作系统的位数，再选择右侧【core】下的压缩包进行下载，并保存。</p>
+<p><img src="https://i.loli.net/2019/11/05/UmykdTYVOGh68q5.png" alt="lue8jA6pb79rof3.png"></p>
+<p>3.因为下载的该压缩为免安装版Tomcat，下载完成后，将该<strong>压缩包解压</strong>即可。</p>
+<p>（记住该<strong>解压文件的存放位置</strong>，后面环境变量配置会用到）</p>
+<p><img src="https://i.loli.net/2019/11/05/RUe67qAyiM3EQNt.png" alt="mgnRhuEvfQZSOFi.png"></p>
+<h2 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置"></a>2.环境变量配置</h2><p>1.鼠标右键点击【这台电脑】–&gt;选择【属性】-&gt;【高级系统设置】–&gt;【系统变量】。</p>
+<p><img src="https://i.loli.net/2019/11/05/CPw5USF3fHvDLq6.png" alt="V49j5xeuaTkAXUh.png"></p>
+<p><img src="https://i.loli.net/2019/11/05/SPCozEbFHd5Gfe9.png" alt="rF9ipmXEwBWg43G.png"></p>
+<p>2.然后，点击“系统变量”框下的【新建】按钮。</p>
+<p>（1）新建CATALINA_BASE变量</p>
+<p>变量名：CATALINA_BASE</p>
+<p>变量值：C:\my\apache-tomcat-8.5.42-windows-x64\apache-tomcat-8.5.42</p>
+<p>（Tomcat安装位置，即刚刚解压文件夹下bin文件所在位置）</p>
+<p><img src="https://i.loli.net/2019/11/05/JfYhNARlTxc76aC.png" alt="ZCj85eb4OGW6Bum.png"></p>
+<p>（2）新建CATALINA_HOME变量</p>
+<p>变量名：CATALINA_HOME</p>
+<p>变量值：C:\my\apache-tomcat-8.5.42-windows-x64\apache-tomcat-8.5.42</p>
+<p><img src="https://i.loli.net/2019/11/05/1paJwv3o5eRl4xB.png" alt="image.png"></p>
+<p>（3）找到Path变量，点击编辑</p>
+<p>变量名：Path</p>
+<p>变量值： %CATALINA_HOME%\bin</p>
+<p>（不要删除原有path变量值，直接在最后一行添加上这一句即可）</p>
+<p>这样Tomcat就配置好了。打开cmd命令提示符，输入startup后回车，就可以看到Tomcat成功启动了。</p>
+<p><img src="https://i.loli.net/2019/11/05/fXWu2OthNMGP7RS.png" alt="WRgEArbHVB1m2oL.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/04/6/" data-id="ck2yfuqpp0005uwnu96p6hui8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/05/8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          初识jsp
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/04/5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jsp实现分页效果</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/10/10/">Request和Response的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/10/9/">JSP中使用Cookies实现登陆信息的保存</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/8/">初识jsp</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/6/">我的第六篇博客</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/5/">jsp实现分页效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

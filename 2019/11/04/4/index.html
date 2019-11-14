@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>jsp内置对象 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.request对象 ​     客户端的请求信息被封装在request对象中，通过它才能了解到客户的需求，然后做出响应。它是HttpServletRequest类的实例。 序号 方 法 说 明1   object getAttribute(String name) 返回指定属性的属性值2   Enumeration getAttributeNames() 返回所有可用属性名的枚举3   Str">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jsp内置对象">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;4&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.request对象 ​     客户端的请求信息被封装在request对象中，通过它才能了解到客户的需求，然后做出响应。它是HttpServletRequest类的实例。 序号 方 法 说 明1   object getAttribute(String name) 返回指定属性的属性值2   Enumeration getAttributeNames() 返回所有可用属性名的枚举3   Str">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-10T09:53:51.674Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/04/4/" class="article-date">
+  <time datetime="2019-11-04T08:02:59.000Z" itemprop="datePublished">2019-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jsp内置对象
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>1.request对象</p>
+<p>​     客户端的请求信息被封装在request对象中，通过它才能了解到客户的需求，然后做出响应。它是HttpServletRequest类的实例。</p>
+<p>序号 方 法 说 明<br>1   object getAttribute(String name) 返回指定属性的属性值<br>2   Enumeration getAttributeNames() 返回所有可用属性名的枚举<br>3   String getCharacterEncoding() 返回字符编码方式<br>4   int getContentLength() 返回请求体的长度（以字节数）<br>5   String getContentType() 得到请求体的MIME类型<br>6   ServletInputStream getInputStream() 得到请求体中一行的二进制流<br>7   String getParameter(String name) 返回name指定参数的参数值<br>8   Enumeration getParameterNames() 返回可用参数名的枚举<br>9   String[] getParameterValues(String name) 返回包含参数name的所有值的数组<br>10   String getProtocol() 返回请求用的协议类型及版本号<br>11   String getScheme() 返回请求用的计划名,如:http.https及ftp等<br>12   String getServerName() 返回接受请求的服务器主机名<br>13   int getServerPort() 返回服务器接受此请求所用的端口号<br>14   BufferedReader getReader() 返回解码过了的请求体<br>15   String getRemoteAddr() 返回发送此请求的客户端IP地址<br>16   String getRemoteHost() 返回发送此请求的客户端主机名<br>17   void setAttribute(String key,Object obj) 设置属性的属性值<br>18   String getRealPath(String path) 返回一虚拟路径的真实路径</p>
+<p>public void doGet(HttpServletRequest request, HttpServletResponse response)<br>            throws ServletException, IOException {</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line">PrintWriter out = response.getWriter();</span><br><span class="line"><span class="comment">// 获取上下文路径(重要)</span></span><br><span class="line">out.print(<span class="string">"上下文路径："</span> + request.getContentType() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 获取协议</span></span><br><span class="line">out.print(<span class="string">"协议：  "</span> + request.getProtocol() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 获取客户端ip</span></span><br><span class="line">out.print(<span class="string">"客户端ip： "</span> + request.getRemoteAddr() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 客户端主机名</span></span><br><span class="line">out.print(<span class="string">"主机名："</span> + request.getRemoteHost() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 编码</span></span><br><span class="line">out.print(<span class="string">"编码："</span> + request.getCharacterEncoding() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 请求类型</span></span><br><span class="line">out.print(<span class="string">"请求类型："</span> + request.getMethod() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// URL中的附加路径信息</span></span><br><span class="line">out.print(<span class="string">"URL中的附加信息 ："</span> + request.getPathInfo() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 映射到服务器实际路径之后的路径信息</span></span><br><span class="line">out.print(<span class="string">"映射到服务器实际路径之后的路径信息："</span> + request.getPathTranslated() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 请求URL</span></span><br><span class="line">out.print(<span class="string">"请求URL"</span> + request.getRequestURL() + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"><span class="comment">// 获取request头</span></span><br><span class="line">out.print(request.getHeader(<span class="string">"Host"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Referer"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Accept-Language"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Accept-Encoding"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"User-Agent"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Connection"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getHeader(<span class="string">"Cookie"</span>) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line"></span><br><span class="line">out.print(request.getScheme() + <span class="string">"&lt;br/&gt;"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>2.response对象</p>
+<p>​     response对象包含了响应客户请求的有关信息，但在JSP中很少直接用到它。它是HttpServletResponse类的实例。</p>
+<p>序号 方 法 说 明<br>1   String getCharacterEncoding() 返回响应用的是何种字符编码<br>2   ServletOutputStream getOutputStream() 返回响应的一个二进制输出流<br>3   PrintWriter getWriter() 返回可以向客户端输出字符的一个对象<br>4   void setContentLength(int len) 设置响应头长度<br>5   void setContentType(String type) 设置响应的MIME类型<br>6   sendRedirect(java.lang.String location) 重新定向客户端的请求<br>　import org.springframework.web.context.request.RequestContextHolder;<br>import org.springframework.web.context.request.ServletRequestAttributes;</p>
+<p>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;sql:query <span class="keyword">var</span>=``<span class="string">"result"</span>` `&gt;</span><br><span class="line">  ``select * from mytable order by nameid</span><br><span class="line">&lt;/sql:query&gt;</span><br><span class="line">&lt;%request.setAttribute(``<span class="string">"nameid"</span>``, ``<span class="string">"2"</span>``); %&gt;</span><br><span class="line">&lt;myTag:cupSize cupSize=``"1"` `cupSizes=``"$&#123;result&#125;"``&gt;&lt;/myTag:cupSize&gt;</span><br><span class="line">&lt;myTag:cupSize cupSize=``"$&#123;nameid&#125;"` `cupSizes=``"$&#123;result&#125;"``&gt;&lt;/myTag:cupSize&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.session对象</p>
+<p>​     session对象指的是客户端与服务器的一次会话，从客户连到服务器的一个WebApplication开始，直到客户端与服务器断开连接为止。它是HttpSession类的实例.</p>
+<p>序号 方 法 说 明<br>1   long getCreationTime() 返回SESSION创建时间<br>2   public String getId() 返回SESSION创建时JSP引擎为它设的惟一ID号<br>3   long getLastAccessedTime() 返回此SESSION里客户端最近一次请求时间<br>4   int getMaxInactiveInterval() 返回两次请求间隔多长时间此SESSION被取消(ms)<br>5   String[] getValueNames() 返回一个包含此SESSION中所有可用属性的数组<br>6   void invalidate() 取消SESSION，使SESSION不可用<br>7   boolean isNew() 返回服务器创建的一个SESSION,客户端是否已经加入<br>8   void removeValue(String name) 删除SESSION中指定的属性<br>9   void setMaxInactiveInterval() 设置两次请求间隔多长时间此SESSION被取消(ms)</p>
+<p>test1.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;HTML&gt;``&lt;HEAD&gt;``&lt;TITLE&gt; Document &lt;/TITLE&gt;``&lt;/HEAD&gt;``&lt;BODY BGCOLOR=``"#FFFFFF"``&gt;``&lt;%``session.setAttribute(``"str"``,``new` `String(``"this is test"``));``%&gt;``&lt;/BODY&gt;``&lt;/HTML&gt;`</span><br></pre></td></tr></table></figure>
+
+<p>test2.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;HTML&gt;``&lt;HEAD&gt;``&lt;TITLE&gt; New Document &lt;/TITLE&gt;``&lt;/HEAD&gt;``&lt;BODY BGCOLOR=``"#FFFFFF"``&gt;``&lt;%``String ls_str=``null``;``ls_str=(String)session.getAttribute(``"str"``);``out.println(“从session里取出的值为：”+ls_str);``%&gt;``&lt;/BODY&gt;``&lt;/HTML&gt;`</span><br></pre></td></tr></table></figure>
+
+<p>判断用户是否执行刷新操作，避免刷新时也进行相关操作，区分是否首次进入本页面，session.isNew()。</p>
+<p>在线人数统计的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;%@ page contentType=``"text/html; charset=GB2312"` `%&gt;``&lt;HTML&gt;``&lt;HEAD&gt;``&lt;TITLE&gt;application计数器&lt;/TITLE&gt;``&lt;/HEAD&gt;``&lt;BODY&gt;``&lt;BR&gt;``&lt;%``  ``Integer number=(Integer)application.getAttribute(``"Count"``);``  ``//检查Count属性是否可取得`` ``if``(number==``null``)``  ``&#123;``    ``number=``new` `Integer(``1``);``    ``application.setAttribute(``"Count"``,number); ``  ``&#125;``  ``if``(session.isNew()==``true``) ``//判断用户是否执行刷新操作``  ``&#123;`` ``//将取得的值增加1`` ``number=``new` `Integer(number.intValue()+``1``);``    ``application.setAttribute(``"Count"``,number); ``  ``&#125;``%&gt;``&lt;P&gt;&lt;P&gt;您是第``  ``&lt;%``int` `a=((Integer)pageContext.getAttribute(``"Count"``,PageContext.APPLICATION_SCOPE)).intValue();``  ``%&gt;``  ``&lt;%=a%&gt;``个访问本站的客户。``&lt;/BODY&gt;``&lt;/HTML&gt;`</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/04/4/" data-id="ck2yfuqpm0002uwnufct1gxhl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/04/5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          jsp实现分页效果
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/31/3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据库</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/10/10/">Request和Response的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/10/9/">JSP中使用Cookies实现登陆信息的保存</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/8/">初识jsp</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/6/">我的第六篇博客</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/5/">jsp实现分页效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>初识jsp | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初识JSP创建时间:2019-10-30 18:52 阅读:22 Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码jsp九大内置对象：就是没有声明就可以使用的对象 1234567891.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*2.response：HttpServletR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识jsp">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;05&#x2F;8&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="初识JSP创建时间:2019-10-30 18:52 阅读:22 Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码jsp九大内置对象：就是没有声明就可以使用的对象 1234567891.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*2.response：HttpServletR">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-05T03:36:15.831Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/05/8/" class="article-date">
+  <time datetime="2019-11-05T03:33:47.000Z" itemprop="datePublished">2019-11-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初识jsp
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="初识JSP"><a href="#初识JSP" class="headerlink" title="初识JSP"></a>初识JSP</h1><p>创建时间:2019-10-30 18:52</p>
+<p>阅读:22</p>
+<h4 id="Jsp-本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码"><a href="#Jsp-本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码" class="headerlink" title="Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码"></a>Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码</h4><p><strong>jsp九大内置对象：</strong>就是没有声明就可以使用的对象</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*</span><br><span class="line"><span class="number">2</span>.response：HttpServletResponse的对象，代表客户端的响应，几乎不用。</span><br><span class="line"><span class="number">3</span>.session:HttpSession对象，代表一次会话。*</span><br><span class="line"><span class="number">4</span>.application：ServletContext对象，代表当前web应用。*</span><br><span class="line"><span class="number">5</span>.config:ServletConfig对象，代表当前servlet，用于读取当前servlet配置信息。</span><br><span class="line"><span class="number">6</span>.out:JspWrite对象，调用print方法可以吧字符串输出到浏览器。</span><br><span class="line"><span class="number">7</span>.page：指的是当前jsp对应的servlet对象的引用。</span><br><span class="line"><span class="number">8</span>.PageContext:页面的上下文，可以获取其他<span class="number">8</span>个内置对象。*</span><br><span class="line"><span class="number">9</span>.exception:异常对象</span><br></pre></td></tr></table></figure>
+
+<h4 id="四大域对象："><a href="#四大域对象：" class="headerlink" title="四大域对象："></a><strong>四大域对象：</strong></h4><h5 id="application、session、request、pageContext-域对象从大到小"><a href="#application、session、request、pageContext-域对象从大到小" class="headerlink" title="application、session、request、pageContext(域对象从大到小)"></a>application、session、request、pageContext(域对象从大到小)</h5><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">application：最大与范围，范围限于当前web应用。</span><br><span class="line">session：范围限于一次会话，浏览器打开到关闭就是一次会话。</span><br><span class="line">request：范围限于一次请求。</span><br><span class="line">pageContext：范围限于当前页面。</span><br></pre></td></tr></table></figure>
+
+<h5 id="绝对路径：相对于当前web站点的根目录路径"><a href="#绝对路径：相对于当前web站点的根目录路径" class="headerlink" title="绝对路径：相对于当前web站点的根目录路径"></a>绝对路径：相对于当前web站点的根目录路径</h5><h5 id="站点："><a href="#站点：" class="headerlink" title="站点："></a>站点：</h5><p><a href="http://localhost:8080/Servlet03/a.jsp" target="_blank" rel="noopener">http://localhost:8080/Servlet03/a.jsp</a></p>
+<h5 id="http-localhost-8080-这就是站点"><a href="#http-localhost-8080-这就是站点" class="headerlink" title="http://localhost:8080 这就是站点"></a><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080</a> 这就是站点</h5><h5 id="Servlet03：当前web应用，就是contextpath"><a href="#Servlet03：当前web应用，就是contextpath" class="headerlink" title="/Servlet03：当前web应用，就是contextpath"></a>/Servlet03：当前web应用，就是contextpath</h5><h5 id="以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径"><a href="#以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径" class="headerlink" title="以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径"></a>以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径</h5><h5 id="：代表当前web应用的根目录-有时候代表当前web站点的根目录"><a href="#：代表当前web应用的根目录-有时候代表当前web站点的根目录" class="headerlink" title="/：代表当前web应用的根目录 有时候代表当前web站点的根目录"></a>/：代表当前web应用的根目录 有时候代表当前web站点的根目录</h5><h5 id="代表当前web应用的根目录：请求转发"><a href="#代表当前web应用的根目录：请求转发" class="headerlink" title="代表当前web应用的根目录：请求转发"></a>代表当前web应用的根目录：请求转发</h5><h5 id="有时候代表当前web站点的根目录："><a href="#有时候代表当前web站点的根目录：" class="headerlink" title="有时候代表当前web站点的根目录："></a>有时候代表当前web站点的根目录：</h5><h5 id="web-xml中配置servlet映射代表当前web应用的根目录"><a href="#web-xml中配置servlet映射代表当前web应用的根目录" class="headerlink" title="web.xml中配置servlet映射代表当前web应用的根目录"></a>web.xml中配置servlet映射代表当前web应用的根目录</h5><h5 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h5><h4 id="ok，到此结束！"><a href="#ok，到此结束！" class="headerlink" title="ok，到此结束！"></a>ok，到此结束！</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/05/8/" data-id="ck2yfuqpq0006uwnug5pv2ivz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/10/9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JSP中使用Cookies实现登陆信息的保存
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/04/6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我的第六篇博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/10/10/">Request和Response的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/10/9/">JSP中使用Cookies实现登陆信息的保存</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/8/">初识jsp</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/6/">我的第六篇博客</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/5/">jsp实现分页效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
